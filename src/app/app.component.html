@@ -6,17 +6,21 @@
 
 <div class="content">
   <mat-card class="content-card">
-    <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Number</mat-label>
-      <input matInput type="number" placeholder="16" id="numberToAdd" #newNumber min="1">
-    </mat-form-field>
-    <button name="addButton" (click)="AddNumber(newNumber)" class="sumbit-button" mat-raised-button color="accent">Add</button>
+    <form action="submit" [formGroup]="numberForm" (ngSubmit)="AddNumber()">
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Number</mat-label>
+        <input matInput type="number" placeholder="16" id="numberToAdd" formControlName="number" min="1">
+      </mat-form-field>
+      <button name="addButton" [disabled]="!numberForm.valid" type="submit" class="sumbit-button" mat-raised-button
+        color="accent">Add</button>
+    </form>
 
     <mat-list role="list">
       <mat-list-item id="number-List" *ngFor="let number of numberList" role="listitem">{{number}}</mat-list-item>
     </mat-list>
 
-    <p class="no-numbers" *ngIf="numberList.length == 0">You must add numbers to check if they are walkers, assesments or both.</p>
+    <p class="no-numbers" *ngIf="numberList.length == 0">You must add numbers to check if they are walkers, assesments
+      or both.</p>
   </mat-card>
 
 </div>

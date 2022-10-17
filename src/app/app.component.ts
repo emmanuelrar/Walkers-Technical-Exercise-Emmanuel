@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,17 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   title = 'Walker Test';
-  numberList: number[] = []
+  
+  numberList: any[] = [];
 
+  numberForm = new FormGroup({
+    number: new FormControl([], [Validators.required]),
+  });
 
-  AddNumber = (number: HTMLInputElement) => {
-    this.numberList.push(parseInt(number.value));
-    number.value = '';
+  AddNumber = () => {
+    console.log(this.numberForm.value);
+
+    this.numberList.push(this.numberForm.value.number);
   }
 
 }
