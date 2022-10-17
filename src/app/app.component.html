@@ -1,6 +1,8 @@
-<!-- <div class="content">
+<div class="content">
   <span>{{ title }} app is running!</span>
-</div> -->
+</div>
+
+
 <p>
   <mat-toolbar color="primary">
     <span>{{title}}</span>
@@ -11,15 +13,15 @@
   <mat-card class="content-card">
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Number</mat-label>
-      <input matInput type="number" placeholder="16" value="1">
+      <input matInput type="number" placeholder="16" id="numberToAdd" #newNumber min="1">
     </mat-form-field>
-    <button class="sumbit-button" mat-raised-button color="accent">Add</button>
+    <button name="addButton" (click)="addNumber(newNumber)" class="sumbit-button" mat-raised-button color="accent">Add</button>
 
     <mat-list role="list">
-      <mat-list-item role="listitem">Item 1</mat-list-item>
-      <mat-list-item role="listitem">Item 2</mat-list-item>
-      <mat-list-item role="listitem">Item 3</mat-list-item>
+      <mat-list-item id="number-List" *ngFor="let number of numberList" role="listitem">{{number}}</mat-list-item>
     </mat-list>
+
+    <p class="no-numbers" *ngIf="numberList.length == 0">You must add numbers to check if they are walkers, assesments or both.</p>
   </mat-card>
 
 </div>
