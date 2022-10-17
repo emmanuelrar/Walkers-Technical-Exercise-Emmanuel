@@ -1,5 +1,29 @@
-<div class="content">
+<!-- <div class="content">
   <span>{{ title }} app is running!</span>
+</div> -->
+<p>
+  <mat-toolbar color="primary">
+    <span>{{title}}</span>
+  </mat-toolbar>
+</p>
+
+<div class="content">
+  <mat-card class="content-card">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Number</mat-label>
+      <input matInput type="number" placeholder="16" value="1">
+    </mat-form-field>
+    <button class="sumbit-button" mat-raised-button color="accent">Add</button>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">Item 1</mat-list-item>
+      <mat-list-item role="listitem">Item 2</mat-list-item>
+      <mat-list-item role="listitem">Item 3</mat-list-item>
+    </mat-list>
+  </mat-card>
+
 </div>
 
-<router-outlet></router-outlet>
+
+
+<!-- <router-outlet></router-outlet> -->
