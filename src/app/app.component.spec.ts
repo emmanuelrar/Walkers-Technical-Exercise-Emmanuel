@@ -35,29 +35,36 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Walker Test'`, () => {
+  it(`should render 3 number-List`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('Walker Test');
+    const appComponent = fixture.componentInstance;
+    appComponent.numberList = [1, 2, 3];
+    fixture.detectChanges();
+
+    const numberList = fixture.debugElement.queryAll(By.css('#number-List'));
+    expect(numberList.length).toEqual(3);
   });
 
-  it('should render title', () => {
+  it('should render no-numbers', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Walker Test app is running!');
+    const noNumberText = fixture.debugElement.nativeElement.querySelector('.no-numbers');
+    expect(noNumberText.textContent).toContain('You must add numbers to check if they are walkers, assesments or both.');
   });
 
-  xit('should add new number at click', () => {
+  it('should add 2 new numbers at click', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-
+    const appComponent = fixture.componentInstance;
+    
     const buttonSubmit = fixture.debugElement.nativeElement.querySelector('.sumbit-button');
-    const numberListElement = fixture.debugElement.queryAll(By.css('#number-List'));
     const numberInput = fixture.debugElement.nativeElement.querySelector('#numberToAdd');
     numberInput.value = 45;
     buttonSubmit.click();
+    numberInput.value = 12;
+    buttonSubmit.click();
 
-    expect(numberListElement.length).toBe(0);
+    expect(appComponent.numberList.length).toBe(2);
   });
 });

@@ -12,7 +12,7 @@ export class AppComponent {
   numberList: number[] = []
 
 
-  addNumber = (number: HTMLInputElement) => {
+  AddNumber = (number: HTMLInputElement) => {
     this.numberList.push(parseInt(number.value));
     number.value = '';
   }

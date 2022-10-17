@@ -1,8 +1,3 @@
-<div class="content">
-  <span>{{ title }} app is running!</span>
-</div>
-
-
 <p>
   <mat-toolbar color="primary">
     <span>{{title}}</span>
@@ -15,7 +10,7 @@
       <mat-label>Number</mat-label>
       <input matInput type="number" placeholder="16" id="numberToAdd" #newNumber min="1">
     </mat-form-field>
-    <button name="addButton" (click)="addNumber(newNumber)" class="sumbit-button" mat-raised-button color="accent">Add</button>
+    <button name="addButton" (click)="AddNumber(newNumber)" class="sumbit-button" mat-raised-button color="accent">Add</button>
 
     <mat-list role="list">
       <mat-list-item id="number-List" *ngFor="let number of numberList" role="listitem">{{number}}</mat-list-item>
