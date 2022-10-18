@@ -18,7 +18,7 @@ export class AppComponent {
   numberList: any[] = [];
 
   numberForm = new FormGroup({
-    number: new FormControl(null, [Validators.required]),
+    number: new FormControl(0, [Validators.required]),
   });
 
   AddNumber = () => {
