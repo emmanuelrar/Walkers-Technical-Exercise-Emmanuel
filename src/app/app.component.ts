@@ -10,31 +10,57 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
 
   title = 'Walker Test';
+  howManyToShow = 5;
+
+  minToShow = 0;
+  maxToShow = this.howManyToShow;
 
   numberList: any[] = [];
 
   numberForm = new FormGroup({
-    number: new FormControl([], [Validators.required]),
+    number: new FormControl(null, [Validators.required]),
   });
 
   AddNumber = () => {
     console.log(this.numberForm.value);
 
-    this.numberList.push(this.numberForm.value.number);
+    let numberToAdd: number = this.numberForm.value.number!;
+
+    this.numberList.push({ value: numberToAdd, type: this.numberTypeClass(numberToAdd, false) });
   }
 
-  numberTypeClass = (d: number) => {
+  numberTypeClass = (d: number, classFormat: boolean = true): string => {
     let cssClass = '';
 
-    if (d % 3) {
+    if (d % 3 === 0 && d % 5 === 0) {
+      cssClass = 'walkers-assessment';
+    } else if (d % 3 === 0) {
       cssClass = 'walkers';
-    } else if (d % 5) {
+    } else if (d % 5 === 0) {
       cssClass = 'assessment';
-    } else if (d % 3 && d % 5) {
-      cssClass = 'both';
+    } else {
+      cssClass = 'none'
+    }
+
+    if (!classFormat) {
+      cssClass = cssClass.replace('-', ' ');
+    }
+
+    if (new Date().getDay() == 1 && !classFormat) {
+      cssClass += '-m';
     }
 
     return cssClass;
+  }
+
+  Next() {
+    this.minToShow += this.howManyToShow;
+    this.maxToShow += this.howManyToShow;
+  }
+
+  Prev() {
+    this.minToShow -= this.howManyToShow;
+    this.maxToShow -= this.howManyToShow;
   }
 
 }

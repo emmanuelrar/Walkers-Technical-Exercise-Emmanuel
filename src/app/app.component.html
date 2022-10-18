@@ -15,12 +15,18 @@
         color="accent">Add</button>
     </form>
 
-    <mat-list role="list">
-      <mat-list-item [ngClass]="numberTypeClass(number)" id="number-List" *ngFor="let number of numberList" role="listitem">{{number}}</mat-list-item>
+    <mat-list class="list">
+      <mat-list-item [ngClass]="numberTypeClass(number.value)" id="number-List"
+        *ngFor="let number of numberList | slice:minToShow:maxToShow; let i=index" role="listitem">{{number.value}} -
+        {{number.type}}</mat-list-item>
     </mat-list>
 
     <p class="no-numbers" *ngIf="numberList.length == 0">You must add numbers to check if they are walkers, assesments
       or both.</p>
+
+    <button class="prev-button" (click)="Prev()" [disabled]="minToShow <= 0" mat-raised-button color="secondary">Prev {{howManyToShow}}</button>
+    <button class="next-button" [disabled]="numberList.length <= maxToShow" (click)="Next()" mat-raised-button color="primary">Next {{howManyToShow}}</button>
+
   </mat-card>
 
 </div>
