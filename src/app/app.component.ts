@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent {
 
   title = 'Walker Test';
-  howManyToShow = 5;
+  howManyToShow = 20;
 
   minToShow = 0;
   maxToShow = this.howManyToShow;
